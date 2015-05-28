@@ -4,19 +4,20 @@
 // //GTID 902985939
 
 #include <iostream>
-#include "gmpxx.h"
+#include <gmpxx.h>
+
 
 using namespace std;
 
 
-gmp_randclass rand(gmp_randinit_default);
+gmp_randclass randm(gmp_randinit_default);
 int SIZE=32; 
 
 void GetPrime(mpz_class& p, unsigned long sz, unsigned long c)
 { 
   while(1)
     {
-      p = rand.get_z_bits(sz);
+      p = randm.get_z_bits(sz);
       if (mpz_probab_prime_p(p.get_mpz_t(), c)) return;
     }
 }
@@ -64,7 +65,7 @@ for(int m=0;m<100;m++)
     {
       mpz_class Mes, Code,  Decode,crackcode,gcd;
       mpz_class x=2,y=2,z,de=1,dy=1,dz=1,cfi,ce;
-      Mes = rand.get_z_bits((2*SIZE)-8);
+      Mes = randm.get_z_bits((2*SIZE)-8);
 
 	EnDecrypt(Code, Mes, d, n);  // encrypted message
      EnDecrypt(Decode, Code, e, n);  // decrypted message  
